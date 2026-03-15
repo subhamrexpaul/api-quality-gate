@@ -24,3 +24,12 @@ def auth_api(base_url) -> AuthAPI:
     return AuthAPI(base_url)
 
 
+@pytest.fixture(scope="session")
+def auth_token(auth_api) -> str:
+    """Fixture returning a valid authentication token."""
+    token = auth_api.get_token()
+    assert token is not None, "Failed to retrieve auth token"
+    return token
+
+
+
