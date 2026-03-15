@@ -87,6 +87,18 @@ def test_bookingdates_has_checkin_and_checkout(booking_api, sample_booking):
     assert "checkout" in booking_dates, "Field 'checkout' is missing in bookingdates"
 
 
+@pytest.mark.contract
+def test_totalprice_is_integer_not_string(booking_api, sample_booking):
+    """
+    Test that the 'totalprice' field is of integer type.
+    """
+    response = booking_api.get_booking(sample_booking)
+    totalprice = response.json().get("totalprice")
+    
+    assert isinstance(totalprice, int), f"Expected totalprice to be integer, but got {type(totalprice)}"
+
+
+
 
 
 
