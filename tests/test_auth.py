@@ -43,3 +43,18 @@ def test_empty_username_returns_bad_credentials(auth_api):
     assert data["reason"] == "Bad credentials"
 
 
+@pytest.mark.smoke
+def test_empty_password_returns_bad_credentials(auth_api):
+    """
+    Test that providing an empty password returns a 200 OK 
+    containing 'Bad credentials' message.
+    """
+    response = auth_api.post("/auth", json={"username": "admin", "password": ""})
+    assert_status_code(response, 200)
+    
+    data = response.json()
+    assert "reason" in data, "Response is missing 'reason' key"
+    assert data["reason"] == "Bad credentials"
+
+
+
