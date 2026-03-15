@@ -41,3 +41,15 @@ def test_put_booking_response_matches_schema(booking_api, auth_token, sample_boo
     assert_valid_schema(response.json(), str(BOOKING_SCHEMA))
 
 
+@pytest.mark.contract
+def test_patch_booking_response_matches_schema(booking_api, auth_token, sample_booking):
+    """
+    Test that the PATCH /booking/:id response matches the booking schema.
+    """
+    patch_data = {"firstname": "ContractTest"}
+    response = booking_api.partial_update(sample_booking, patch_data, auth_token)
+    assert response.status_code == 200
+    assert_valid_schema(response.json(), str(BOOKING_SCHEMA))
+
+
+
