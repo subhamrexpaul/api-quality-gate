@@ -37,3 +37,15 @@ def test_each_item_has_bookingid_key(booking_api):
         assert "bookingid" in item, f"Item {item} is missing 'bookingid' key"
 
 
+@pytest.mark.smoke
+def test_create_booking_returns_200(booking_api):
+    """
+    Test that creating a new booking returns a 200 OK status code.
+    (Note: API quirk uses 200 instead of 201).
+    """
+    booking_data = generate_booking()
+    response = booking_api.create_booking(booking_data)
+    assert_status_code(response, 200)
+
+
+
