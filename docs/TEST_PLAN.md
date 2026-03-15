@@ -30,3 +30,18 @@ This project, `api-quality-gate`, serves as a robust automated verification suit
 | Negative          | PyTest        | 10    | Validates error handling for invalid/bad requests|
 | Data Integrity    | SQLite + PyTest | 6   | Confirms logical correctness within the database |
 
+## 5. Entry Criteria
+- The Restful-Booker API is accessible at the base URL (`https://restful-booker.herokuapp.com`)
+- The `/auth` endpoint successfully returns a valid token with functional credentials
+- Python environment (version 3.11+) is set up locally or in CI
+- All project dependencies are installed successfully via `requirements.txt`
+- Test environment components (SQLite mock database) are initialized without errors
+
+## 6. Exit Criteria
+- 100% of defined smoke tests and regression tests are passing execution
+- 0 Priority-1 (Critical) or Priority-2 (Major) bugs remaining open
+- Requirements Traceability Matrix (RTM) is 100% complete, mapping tests to requirements
+- CI pipeline (GitHub Actions) returns a green build on the `main` branch
+- Test execution reports (HTML) are successfully generated and attached as workflow artifacts
+
+
