@@ -45,5 +45,25 @@ def db() -> DBClient:
     client.close()
 
 
+@pytest.fixture(scope="function")
+def sample_booking(booking_api, auth_token) -> int:
+    """
+    Fixture generating a sample booking, creating it via the API,
+    yielding its booking ID, and subsequently deleting it.
+    """
+    booking_data = generate_booking()
+    response = booking_api.create_booking(booking_data)
+    assert response.status_code == 200, "Fixture failed: Could not create booking"
+    
+    booking_id = response.json().get("bookingid")
+    assert booking_id is not None, "Fixture failed: bookingid not returned"
+    
+    yield booking_id
+    
+    # Teardown logic
+    booking_api.delete_booking(booking_id, auth_token)
+
+
+
 
 
