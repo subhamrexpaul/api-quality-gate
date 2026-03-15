@@ -62,5 +62,23 @@ def test_create_booking_response_has_bookingid(booking_api):
     assert isinstance(data["bookingid"], int), f"Expected int for bookingid but got {type(data['bookingid'])}"
 
 
+@pytest.mark.regression
+def test_create_booking_firstname_matches_request(booking_api):
+    """
+    Test that the firstname of the created booking matches the request data.
+    """
+    booking_data = generate_booking()
+    response = booking_api.create_booking(booking_data)
+    assert_status_code(response, 200)
+    
+    data = response.json()
+    actual_firstname = data["booking"]["firstname"]
+    expected_firstname = booking_data["firstname"]
+    assert actual_firstname == expected_firstname, (
+        f"Expected firstname '{expected_firstname}' but got '{actual_firstname}'"
+    )
+
+
+
 
 
