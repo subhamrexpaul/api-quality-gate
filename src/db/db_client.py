@@ -62,3 +62,23 @@ class DBClient:
             data.get("bookingdates", {}).get("checkout")
         ))
         self.connection.commit()
+
+    def run_query(self, sql: str) -> list:
+        """
+        Execute any raw SQL query and return results as a list of dicts.
+        Useful for running validation queries from queries.sql.
+
+        :param sql: The SQL query string to execute.
+        :return: A list of dictionaries, one per row.
+        """
+        self.cursor.execute(sql)
+        rows = self.cursor.fetchall()
+        # Convert sqlite3.Row objects to plain dicts for easier assertion
+        return [dict(row) for row in rows]
+
+    def close(self):
+        """
+        Close the database connection.
+        Should be called during test teardown to release the DB file.
+        """
+        self.connection.close()
