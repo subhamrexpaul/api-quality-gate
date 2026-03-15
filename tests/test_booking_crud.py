@@ -153,6 +153,22 @@ def test_partial_update_totalprice(booking_api, auth_token, sample_booking):
     assert data["totalprice"] == 777, f"Expected 777 but got {data['totalprice']}"
 
 
+@pytest.mark.regression
+def test_delete_booking_returns_201(booking_api, auth_token):
+    """
+    Test that deleting a booking returns a 201 Created status code.
+    (Note: API quirk uses 201 instead of 204).
+    """
+    # Create a temporary booking to delete
+    booking_data = generate_booking()
+    create_res = booking_api.create_booking(booking_data)
+    temp_id = create_res.json()["bookingid"]
+    
+    response = booking_api.delete_booking(temp_id, auth_token)
+    assert_status_code(response, 201)
+
+
+
 
 
 
