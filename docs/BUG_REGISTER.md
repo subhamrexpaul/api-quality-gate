@@ -29,3 +29,17 @@ New → Assigned → In Progress → Fixed → Verified → Closed
 - **Actual Result**: HTTP `200 OK` with the new booking details.
 - **Fixed In**: N/A (Tests accept 200 OK for this endpoint).
 
+### BUG-003: PATCH empty body returns 200 (should be 400)
+- **Severity**: Minor
+- **Priority**: P3
+- **Status**: New
+- **Description**: The PATCH `/booking/{id}` endpoint incorrectly returns `200 OK` when provided an empty JSON body `{}`, despite no operations being performed on the underlying resource.
+- **Steps to Reproduce**:
+  1. Generate an authentication token from `/auth`.
+  2. Create a new booking via POST `/booking`.
+  3. Send `PATCH /booking/{id}` with an empty payload `{}` and include the generated auth cookie.
+- **Expected Result**: HTTP `400 Bad Request` indicating missing or invalid structure.
+- **Actual Result**: HTTP `200 OK` is incorrectly returned alongside the unmodified original data.
+- **Fixed In**: Pending
+
+
