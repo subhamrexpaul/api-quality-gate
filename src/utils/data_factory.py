@@ -35,3 +35,19 @@ def generate_booking() -> dict:
             "Parking", "Late Checkout", "Extra Pillows"
         ])
     }
+
+
+def generate_invalid_booking() -> dict:
+    """
+    Generate an invalid booking payload with missing required fields.
+    Used for negative testing — to verify the API rejects bad data.
+
+    :return: A dict missing 'firstname' and 'bookingdates' (required fields).
+    """
+    # Deliberately missing 'firstname' and 'bookingdates' to trigger validation errors
+    return {
+        "lastname": fake.last_name(),
+        "totalprice": random.randint(50, 500),
+        "depositpaid": random.choice([True, False])
+    }
+
