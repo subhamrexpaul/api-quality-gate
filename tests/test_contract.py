@@ -75,6 +75,19 @@ def test_booking_all_required_fields_present(booking_api, sample_booking):
         assert field in data, f"Required field '{field}' is missing in the response"
 
 
+@pytest.mark.contract
+def test_bookingdates_has_checkin_and_checkout(booking_api, sample_booking):
+    """
+    Test that the 'bookingdates' object contains 'checkin' and 'checkout' fields.
+    """
+    response = booking_api.get_booking(sample_booking)
+    booking_dates = response.json().get("bookingdates", {})
+    
+    assert "checkin" in booking_dates, "Field 'checkin' is missing in bookingdates"
+    assert "checkout" in booking_dates, "Field 'checkout' is missing in bookingdates"
+
+
+
 
 
 
