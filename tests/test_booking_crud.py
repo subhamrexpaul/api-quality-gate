@@ -127,6 +127,20 @@ def test_full_update_booking(booking_api, auth_token, sample_booking):
     assert data["firstname"] == "Antigravity", f"Expected 'Antigravity' but got '{data['firstname']}'"
 
 
+@pytest.mark.regression
+def test_partial_update_firstname(booking_api, auth_token, sample_booking):
+    """
+    Test that a partial update (PATCH) of only the firstname field works correctly.
+    """
+    patch_data = {"firstname": "PartialUpdate"}
+    response = booking_api.partial_update(sample_booking, patch_data, auth_token)
+    assert_status_code(response, 200)
+    
+    data = response.json()
+    assert data["firstname"] == "PartialUpdate", f"Expected 'PartialUpdate' but got '{data['firstname']}'"
+
+
+
 
 
 
