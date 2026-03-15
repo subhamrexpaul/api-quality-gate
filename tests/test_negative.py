@@ -20,3 +20,18 @@ def test_update_without_token_returns_403(booking_api, sample_booking):
     response = booking_api.update_booking(sample_booking, updated_data, token="")
     assert_status_code(response, 403)
 
+
+@pytest.mark.negative
+def test_create_missing_firstname_field(booking_api):
+    """
+    Test that creating a booking with a missing required field (firstname) returns 400 or 500.
+    Note: Restful-Booker often returns 500 for schema violations.
+    """
+    incomplete_data = generate_booking()
+    del incomplete_data["firstname"]
+    
+    response = booking_api.create_booking(incomplete_data)
+    # Restful-Booker returns 500 for missing fields in many environments
+    assert response.status_code in [400, 500], f"Expected 400/500 but got {response.status_code}"
+
+
