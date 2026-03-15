@@ -186,6 +186,34 @@ def test_deleted_booking_returns_404(booking_api, auth_token):
     assert_status_code(response, 404)
 
 
+@pytest.mark.regression
+def test_create_and_persist_to_db(booking_api, db):
+    """
+    Test that a created booking can be successfully inserted into and 
+    retrieved from the local SQLite database.
+    """
+    # 1. Create booking via API
+    booking_data = generate_booking()
+    response = booking_api.create_booking(booking_data)
+    assert_status_code(response, 200)
+    
+    booking_id = response.json()["bookingid"]
+    
+    # 2. Persist to DB
+    # Adding bookingid into the dict to match insert_booking expectation
+    db_data = booking_data.copy()
+    db_data["bookingid"] = booking_id
+    db.insert_booking(db_data)
+    
+    # 3. Run query to verify persistence
+    sql = f"SELECT * FROM bookings WHERE booking_id = {booking_id}"
+    results = db.run_query(sql)
+    
+    assert len(results) == 1, f"Expected 1 database record but found {len(results)}"
+    assert results[0]["firstname"] == booking_data["firstname"], "DB firstname mismatch"
+
+
+
 
 
 
