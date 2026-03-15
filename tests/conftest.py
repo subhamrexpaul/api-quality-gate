@@ -17,3 +17,10 @@ def booking_api(base_url) -> BookingAPI:
     """Fixture returning an initialized BookingAPI client."""
     return BookingAPI(base_url)
 
+
+@pytest.fixture(scope="session")
+def auth_api(base_url) -> AuthAPI:
+    """Fixture returning an initialized AuthAPI client."""
+    return AuthAPI(base_url)
+
+
