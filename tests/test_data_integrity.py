@@ -21,3 +21,14 @@ def test_booking_persisted_after_create(booking_api, db):
     assert len(results) == 1
     assert results[0]["booking_id"] == booking_id
     assert results[0]["firstname"] == booking_data["firstname"]
+
+
+@pytest.mark.regression
+def test_db_firstname_not_null(db):
+    """
+    Test that no bookings in the database have a NULL firstname.
+    Uses Query 1.
+    """
+    results = db.run_query("SELECT * FROM bookings WHERE firstname IS NULL;")
+    assert len(results) == 0, f"Found {len(results)} records with NULL firstname"
+
