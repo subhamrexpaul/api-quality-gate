@@ -17,3 +17,15 @@ New → Assigned → In Progress → Fixed → Verified → Closed
 - **Expected Result**: HTTP `204 No Content` indicating successful deletion with no return body.
 - **Actual Result**: HTTP `201 Created` is returned.
 - **Fixed In**: N/A (Test cases `test_delete_booking_returns_201_quirk` updated to accept 201 per API documentation).
+
+### BUG-002: POST /booking returns 200 instead of 201
+- **Severity**: Minor
+- **Priority**: P3
+- **Status**: Closed (Documented API Quirk)
+- **Description**: When a new booking is successfully created, the API responds with `200 OK` rather than the `201 Created` status expected for a resource creation operation.
+- **Steps to Reproduce**:
+  1. Send a `POST /booking` request with a valid JSON booking payload.
+- **Expected Result**: HTTP `201 Created` with the new booking details.
+- **Actual Result**: HTTP `200 OK` with the new booking details.
+- **Fixed In**: N/A (Tests accept 200 OK for this endpoint).
+
