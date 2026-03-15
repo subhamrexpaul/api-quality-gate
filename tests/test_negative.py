@@ -100,6 +100,22 @@ def test_partial_update_empty_body(booking_api, auth_token, sample_booking):
     assert response.status_code == 200, f"Expected 200 (Bug-003) but got {response.status_code}"
 
 
+@pytest.mark.negative
+def test_double_delete_same_booking(booking_api, auth_token):
+    """
+    Test that deleting the same booking ID twice returns 405 or 404 on second attempt.
+    """
+    # 1. Create and delete once
+    booking_data = generate_booking()
+    temp_id = booking_api.create_booking(booking_data).json()["bookingid"]
+    booking_api.delete_booking(temp_id, auth_token)
+    
+    # 2. Delete again
+    response = booking_api.delete_booking(temp_id, auth_token)
+    assert response.status_code in [405, 404], f"Expected 405/404 but got {response.status_code}"
+
+
+
 
 
 
