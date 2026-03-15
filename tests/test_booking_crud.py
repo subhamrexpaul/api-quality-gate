@@ -89,6 +89,21 @@ def test_get_booking_by_id_returns_200(booking_api, sample_booking):
     assert_status_code(response, 200)
 
 
+@pytest.mark.regression
+def test_get_booking_returns_correct_data(booking_api, sample_booking):
+    """
+    Test that retrieving a booking by ID returns the correct data keys.
+    """
+    response = booking_api.get_booking(sample_booking)
+    assert_status_code(response, 200)
+    
+    data = response.json()
+    expected_keys = ["firstname", "lastname", "totalprice", "depositpaid", "bookingdates"]
+    for key in expected_keys:
+        assert key in data, f"Response JSON is missing expected key: {key}"
+
+
+
 
 
 
