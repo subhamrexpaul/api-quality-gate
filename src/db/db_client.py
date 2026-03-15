@@ -18,3 +18,24 @@ class DBClient:
         # Row factory allows us to access columns by name (like a dict)
         self.connection.row_factory = sqlite3.Row
         self.cursor = self.connection.cursor()
+
+    def create_table(self):
+        """
+        Create the 'bookings' table if it doesn't already exist.
+        Stores API response data for SQL-based data integrity testing.
+        """
+        self.cursor.execute("""
+            CREATE TABLE IF NOT EXISTS bookings (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                booking_id INTEGER,
+                firstname TEXT,
+                lastname TEXT,
+                totalprice INTEGER,
+                depositpaid INTEGER,
+                checkin TEXT,
+                checkout TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        """)
+        # Commit the DDL statement so the table persists
+        self.connection.commit()
