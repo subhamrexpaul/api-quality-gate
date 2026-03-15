@@ -40,9 +40,12 @@ def db() -> DBClient:
     Function scoped to ensure fresh interactions per test.
     """
     client = DBClient()
+    # Ensure a fresh table for every test to avoid duplication across runs
+    client.cursor.execute("DROP TABLE IF EXISTS bookings;")
     client.create_table()
     yield client
     client.close()
+
 
 
 @pytest.fixture(scope="function")
