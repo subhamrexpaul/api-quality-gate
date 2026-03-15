@@ -32,3 +32,14 @@ def test_db_firstname_not_null(db):
     results = db.run_query("SELECT * FROM bookings WHERE firstname IS NULL;")
     assert len(results) == 0, f"Found {len(results)} records with NULL firstname"
 
+
+@pytest.mark.regression
+def test_db_totalprice_positive(db):
+    """
+    Test that no bookings in the database have zero or negative totalprice.
+    Uses Query 3.
+    """
+    results = db.run_query("SELECT * FROM bookings WHERE totalprice <= 0;")
+    assert len(results) == 0, f"Found {len(results)} records with invalid totalprice"
+
+
