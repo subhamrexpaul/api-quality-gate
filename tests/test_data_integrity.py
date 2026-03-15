@@ -43,3 +43,20 @@ def test_db_totalprice_positive(db):
     assert len(results) == 0, f"Found {len(results)} records with invalid totalprice"
 
 
+@pytest.mark.regression
+def test_db_no_duplicate_booking_ids(db):
+    """
+    Test that there are no duplicate booking_ids in the database.
+    Uses Query 2.
+    """
+    sql = """
+    SELECT booking_id, COUNT(*) as count
+    FROM bookings
+    GROUP BY booking_id
+    HAVING COUNT(*) > 1;
+    """
+    results = db.run_query(sql)
+    assert len(results) == 0, f"Found duplicates: {results}"
+
+
+
