@@ -39,3 +39,26 @@ class DBClient:
         """)
         # Commit the DDL statement so the table persists
         self.connection.commit()
+
+    def insert_booking(self, data: dict):
+        """
+        Insert a single booking record into the bookings table.
+        Expects a dict matching the API response shape from Restful-Booker.
+
+        :param data: A dict with keys like booking_id, firstname, lastname, etc.
+        """
+        self.cursor.execute("""
+            INSERT INTO bookings (booking_id, firstname, lastname, totalprice,
+                                  depositpaid, checkin, checkout)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        """, (
+            data.get("booking_id"),
+            data.get("firstname"),
+            data.get("lastname"),
+            data.get("totalprice"),
+            # SQLite doesn't have a BOOLEAN type, so store as 1/0
+            int(data.get("depositpaid", False)),
+            data.get("bookingdates", {}).get("checkin"),
+            data.get("bookingdates", {}).get("checkout")
+        ))
+        self.connection.commit()
