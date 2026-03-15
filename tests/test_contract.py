@@ -17,3 +17,15 @@ def test_get_booking_matches_schema(booking_api, sample_booking):
     response = booking_api.get_booking(sample_booking)
     assert response.status_code == 200
     assert_valid_schema(response.json(), str(BOOKING_SCHEMA))
+
+
+@pytest.mark.contract
+def test_create_booking_response_matches_schema(booking_api):
+    """
+    Test that the POST /booking response matches the wrapper schema.
+    """
+    booking_data = generate_booking()
+    response = booking_api.create_booking(booking_data)
+    assert response.status_code == 200
+    assert_valid_schema(response.json(), str(CREATE_BOOKING_SCHEMA))
+
