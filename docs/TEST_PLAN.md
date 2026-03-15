@@ -44,4 +44,21 @@ This project, `api-quality-gate`, serves as a robust automated verification suit
 - CI pipeline (GitHub Actions) returns a green build on the `main` branch
 - Test execution reports (HTML) are successfully generated and attached as workflow artifacts
 
+## 7. Test Environment
+- **Programming Language**: Python 3.11+
+- **Test Framework**: PyTest 7.4.3
+- **OS**: Windows / Linux (Ubuntu) / macOS
+- **Target API**: Restful-Booker (`https://restful-booker.herokuapp.com`)
+- **Database**: SQLite (local mock DB, `test_results.db`)
+- **CI/CD**: GitHub Actions (Ubuntu latest runner)
+- **Reporting**: pytest-html
+
+## 8. Test Schedule
+This project execution follows a 2-week structured testing timeline.
+
+| Week   | Activity                                                                 |
+|--------|--------------------------------------------------------------------------|
+| Week 1 | Environment Setup, Auth endpoints, CRUD Functional Test Cases            |
+| Week 2 | Contract Validation, Negative Scenarios, SQL Assertions, CI integration, Documentation |
+
 
