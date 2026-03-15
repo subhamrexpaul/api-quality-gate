@@ -1,0 +1,37 @@
+from faker import Faker
+import random
+
+# Initialize Faker instance for generating realistic test data
+fake = Faker()
+
+
+def generate_booking() -> dict:
+    """
+    Generate a valid booking payload with random data using Faker.
+    Matches the exact request body shape expected by POST /booking.
+
+    :return: A dict with firstname, lastname, totalprice, depositpaid,
+             bookingdates (checkin/checkout), and additionalneeds.
+    """
+    # Generate a future check-in date (between 1 and 30 days from now)
+    checkin = fake.date_between(start_date="+1d", end_date="+30d")
+    # Checkout is always after check-in (between 1 and 14 days after checkin)
+    checkout = fake.date_between(
+        start_date=checkin,
+        end_date=checkin.replace(day=min(checkin.day + 14, 28))
+    )
+
+    return {
+        "firstname": fake.first_name(),
+        "lastname": fake.last_name(),
+        "totalprice": random.randint(50, 500),
+        "depositpaid": random.choice([True, False]),
+        "bookingdates": {
+            "checkin": checkin.isoformat(),
+            "checkout": checkout.isoformat()
+        },
+        "additionalneeds": random.choice([
+            "Breakfast", "Lunch", "Dinner", "WiFi",
+            "Parking", "Late Checkout", "Extra Pillows"
+        ])
+    }
