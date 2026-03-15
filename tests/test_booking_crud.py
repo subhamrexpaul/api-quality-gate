@@ -200,10 +200,11 @@ def test_create_and_persist_to_db(booking_api, db):
     booking_id = response.json()["bookingid"]
     
     # 2. Persist to DB
-    # Adding bookingid into the dict to match insert_booking expectation
+    # Adding booking_id into the dict to match insert_booking expectation
     db_data = booking_data.copy()
-    db_data["bookingid"] = booking_id
+    db_data["booking_id"] = booking_id
     db.insert_booking(db_data)
+
     
     # 3. Run query to verify persistence
     sql = f"SELECT * FROM bookings WHERE booking_id = {booking_id}"
