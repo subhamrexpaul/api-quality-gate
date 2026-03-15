@@ -10,3 +10,10 @@ from src.utils.data_factory import generate_booking
 def base_url() -> str:
     """Fixture returning the root Restful-Booker API URL."""
     return "https://restful-booker.herokuapp.com"
+
+
+@pytest.fixture(scope="session")
+def booking_api(base_url) -> BookingAPI:
+    """Fixture returning an initialized BookingAPI client."""
+    return BookingAPI(base_url)
+
