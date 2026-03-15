@@ -16,10 +16,9 @@ def generate_booking() -> dict:
     # Generate a future check-in date (between 1 and 30 days from now)
     checkin = fake.date_between(start_date="+1d", end_date="+30d")
     # Checkout is always after check-in (between 1 and 14 days after checkin)
-    checkout = fake.date_between(
-        start_date=checkin,
-        end_date=checkin.replace(day=min(checkin.day + 14, 28))
-    )
+    from datetime import timedelta
+    checkout = checkin + timedelta(days=random.randint(1, 14))
+
 
     return {
         "firstname": fake.first_name(),
