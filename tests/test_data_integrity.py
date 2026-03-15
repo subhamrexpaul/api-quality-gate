@@ -69,5 +69,28 @@ def test_db_checkin_before_checkout(db):
     assert len(results) == 0, f"Found records with invalid dates: {results}"
 
 
+@pytest.mark.regression
+def test_db_row_count_matches_inserts(db, booking_api):
+    """
+    Test that the database row count correctly reflects the number of inserts performed.
+    Uses Query 4.
+    """
+    # 1. Get initial count
+    initial_count = db.run_query("SELECT COUNT(*) as total_bookings FROM bookings;")[0]["total_bookings"]
+    
+    # 2. Perform 3 inserts
+    for _ in range(3):
+        data = generate_booking()
+        res = booking_api.create_booking(data)
+        db_data = data.copy()
+        db_data["booking_id"] = res.json()["bookingid"]
+        db.insert_booking(db_data)
+        
+    # 3. Verify final count
+    final_count = db.run_query("SELECT COUNT(*) as total_bookings FROM bookings;")[0]["total_bookings"]
+    assert final_count == initial_count + 3, f"Expected {initial_count + 3} but got {final_count}"
+
+
+
 
 
