@@ -61,4 +61,12 @@ This project execution follows a 2-week structured testing timeline.
 | Week 1 | Environment Setup, Auth endpoints, CRUD Functional Test Cases            |
 | Week 2 | Contract Validation, Negative Scenarios, SQL Assertions, CI integration, Documentation |
 
+## 9. Risks & Mitigations
+| Risk                                    | Mitigation                                                               |
+|-----------------------------------------|--------------------------------------------------------------------------|
+| Restful-Booker API is down              | Retry logic in test execution; pipeline fails gracefully                 |
+| Authentication token expires mid-run    | `session`-scoped PyTest fixture ensures token is valid for test run      |
+| Flaky network or intermittent 500s      | Integration of robust assertions; clear failure logs in HTML artifacts   |
+| API schema changes without notice       | Contract tests strictly enforce schemas to catch changes immediately     |
+
 
