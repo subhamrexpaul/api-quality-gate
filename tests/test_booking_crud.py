@@ -24,3 +24,16 @@ def test_get_all_bookings_returns_list(booking_api):
     assert isinstance(data, list), f"Expected list but got {type(data)}"
     assert len(data) > 0, "Expected non-empty list of bookings"
 
+
+@pytest.mark.regression
+def test_each_item_has_bookingid_key(booking_api):
+    """
+    Test that every object in the booking list contains the 'bookingid' key.
+    """
+    response = booking_api.get_all_bookings()
+    data = response.json()
+    
+    for item in data[:10]:  # Testing first 10 items for efficiency
+        assert "bookingid" in item, f"Item {item} is missing 'bookingid' key"
+
+
