@@ -57,4 +57,13 @@ def test_empty_password_returns_bad_credentials(auth_api):
     assert data["reason"] == "Bad credentials"
 
 
-
+@pytest.mark.smoke
+def test_auth_response_schema(auth_api):
+    """
+    Test that the valid authentication response matches the expected JSON Schema.
+    """
+    response = auth_api.post("/auth", json={"username": "admin", "password": "password123"})
+    assert_status_code(response, 200)
+    
+    # Validate against auth_schema.json
+    assert_valid_schema(response.json(), "src/schemas/auth_schema.json")
