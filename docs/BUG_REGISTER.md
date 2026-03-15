@@ -54,5 +54,18 @@ New → Assigned → In Progress → Fixed → Verified → Closed
 - **Actual Result**: All requests are processed normally (returning HTTP 200).
 - **Fixed In**: Under investigation by the backend security team.
 
+### BUG-005: Negative totalprice accepted without validation
+- **Severity**: Minor
+- **Priority**: P3
+- **Status**: New
+- **Description**: The API permits the creation of reservations where `totalprice` is less than zero. The database stores these negative financial values without validation checks.
+- **Steps to Reproduce**:
+  1. Send a `POST /booking` request or `PUT /booking/{id}` request using payload with `"totalprice": -500`.
+  2. Review the resulting response or perform a `GET /booking/{id}` fetch.
+- **Expected Result**: HTTP `400 Bad Request` or `422 Unprocessable Entity` due to invalid business logic.
+- **Actual Result**: HTTP `200 OK` is returned, and negative prices display correctly in the system.
+- **Fixed In**: Pending
+
+
 
 
