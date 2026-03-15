@@ -112,6 +112,22 @@ def test_get_nonexistent_booking_returns_404(booking_api):
     assert_status_code(response, 404)
 
 
+@pytest.mark.regression
+def test_full_update_booking(booking_api, auth_token, sample_booking):
+    """
+    Test that a full update (PUT) of a booking correctly modifies labels.
+    """
+    updated_data = generate_booking()
+    updated_data["firstname"] = "Antigravity"
+    
+    response = booking_api.update_booking(sample_booking, updated_data, auth_token)
+    assert_status_code(response, 200)
+    
+    data = response.json()
+    assert data["firstname"] == "Antigravity", f"Expected 'Antigravity' but got '{data['firstname']}'"
+
+
+
 
 
 
