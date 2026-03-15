@@ -45,4 +45,14 @@ def test_create_empty_body(booking_api):
     assert response.status_code in [400, 415, 500], f"Expected 400/415/500 but got {response.status_code}"
 
 
+@pytest.mark.negative
+def test_get_booking_with_string_id(booking_api):
+    """
+    Test that retrieving a booking using a string ID instead of integer returns 404.
+    """
+    response = booking_api.get_booking("invalid_id")
+    assert_status_code(response, 404)
+
+
+
 
