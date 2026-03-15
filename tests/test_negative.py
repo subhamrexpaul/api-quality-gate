@@ -90,6 +90,17 @@ def test_delete_nonexistent_booking(booking_api, auth_token):
     assert response.status_code in [405, 404], f"Expected 405/404 but got {response.status_code}"
 
 
+@pytest.mark.negative
+def test_partial_update_empty_body(booking_api, auth_token, sample_booking):
+    """
+    BUG-003 — PATCH with empty body returns 200, should be 400.
+    """
+    response = booking_api.partial_update(sample_booking, {}, auth_token)
+    # Documented bug: returns 200 instead of 400
+    assert response.status_code == 200, f"Expected 200 (Bug-003) but got {response.status_code}"
+
+
+
 
 
 
