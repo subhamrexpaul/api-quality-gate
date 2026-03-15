@@ -32,4 +32,18 @@ def auth_token(auth_api) -> str:
     return token
 
 
+@pytest.fixture(scope="function")
+def db() -> DBClient:
+    """
+    Fixture creating the DBClient, initializing the 'bookings' table,
+    yielding the DB instance, and closing it during teardown.
+    Function scoped to ensure fresh interactions per test.
+    """
+    client = DBClient()
+    client.create_table()
+    yield client
+    client.close()
+
+
+
 
