@@ -80,6 +80,18 @@ def test_create_negative_totalprice(booking_api):
 
 
 
+@pytest.mark.negative
+def test_delete_nonexistent_booking(booking_api, auth_token):
+    """
+    Test that deleting a non-existent booking ID returns 405 Method Not Allowed.
+    Note: Industry standard is 404, but this API quirky.
+    """
+    response = booking_api.delete_booking(9999999, auth_token)
+    assert response.status_code in [405, 404], f"Expected 405/404 but got {response.status_code}"
+
+
+
+
 
 
 
