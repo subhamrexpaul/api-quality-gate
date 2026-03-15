@@ -64,6 +64,22 @@ def test_auth_wrong_content_type(auth_api):
     assert response.status_code in [415, 400, 404], f"Expected 415/400 but got {response.status_code}"
 
 
+@pytest.mark.negative
+def test_create_negative_totalprice(booking_api):
+    """
+    BUG-005 — API accepts negative price without validation.
+    Testing that the API allows creating a booking with a negative totalprice.
+    """
+    bad_data = generate_booking()
+    bad_data["totalprice"] = -500
+    
+    response = booking_api.create_booking(bad_data)
+    # This is a documented bug, so we assert it currently returns 200
+    assert response.status_code == 200, f"Expected 200 (Bug-005) but got {response.status_code}"
+    assert response.json()["booking"]["totalprice"] == -500
+
+
+
 
 
 
