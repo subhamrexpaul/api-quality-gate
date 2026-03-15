@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Auth Response Schema",
+  "description": "JSON Schema for the Restful-Booker POST /auth response",
+  "type": "object",
+  "required": ["token"],
+  "properties": {
+    "token": {
+      "type": "string"
+    }
+  }
+}
