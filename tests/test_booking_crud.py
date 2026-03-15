@@ -103,6 +103,16 @@ def test_get_booking_returns_correct_data(booking_api, sample_booking):
         assert key in data, f"Response JSON is missing expected key: {key}"
 
 
+@pytest.mark.regression
+def test_get_nonexistent_booking_returns_404(booking_api):
+    """
+    Test that retrieving a non-existent booking ID returns a 404 Not Found.
+    """
+    response = booking_api.get_booking(9999999)
+    assert_status_code(response, 404)
+
+
+
 
 
 
