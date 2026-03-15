@@ -29,3 +29,15 @@ def test_create_booking_response_matches_schema(booking_api):
     assert response.status_code == 200
     assert_valid_schema(response.json(), str(CREATE_BOOKING_SCHEMA))
 
+
+@pytest.mark.contract
+def test_put_booking_response_matches_schema(booking_api, auth_token, sample_booking):
+    """
+    Test that the PUT /booking/:id response matches the booking schema.
+    """
+    updated_data = generate_booking()
+    response = booking_api.update_booking(sample_booking, updated_data, auth_token)
+    assert response.status_code == 200
+    assert_valid_schema(response.json(), str(BOOKING_SCHEMA))
+
+
