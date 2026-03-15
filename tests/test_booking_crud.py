@@ -79,6 +79,17 @@ def test_create_booking_firstname_matches_request(booking_api):
     )
 
 
+@pytest.mark.smoke
+def test_get_booking_by_id_returns_200(booking_api, sample_booking):
+    """
+    Test that retrieving a specific booking by its ID returns a 200 OK.
+    Uses the sample_booking fixture for setup and cleanup.
+    """
+    response = booking_api.get_booking(sample_booking)
+    assert_status_code(response, 200)
+
+
+
 
 
 
