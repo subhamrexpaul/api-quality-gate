@@ -59,4 +59,15 @@ def test_db_no_duplicate_booking_ids(db):
     assert len(results) == 0, f"Found duplicates: {results}"
 
 
+@pytest.mark.regression
+def test_db_checkin_before_checkout(db):
+    """
+    Test that no bookings in the database have a check-in date on or after checkout.
+    Uses Query 5.
+    """
+    results = db.run_query("SELECT * FROM bookings WHERE checkin >= checkout;")
+    assert len(results) == 0, f"Found records with invalid dates: {results}"
+
+
+
 
