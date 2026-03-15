@@ -52,4 +52,15 @@ def test_patch_booking_response_matches_schema(booking_api, auth_token, sample_b
     assert_valid_schema(response.json(), str(BOOKING_SCHEMA))
 
 
+@pytest.mark.contract
+def test_auth_response_matches_schema(auth_api):
+    """
+    Test that the POST /auth response matches the auth schema.
+    """
+    response = auth_api.post("/auth", json={"username": "admin", "password": "password123"})
+    assert response.status_code == 200
+    assert_valid_schema(response.json(), str(AUTH_SCHEMA))
+
+
+
 
