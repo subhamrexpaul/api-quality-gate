@@ -168,6 +168,25 @@ def test_delete_booking_returns_201(booking_api, auth_token):
     assert_status_code(response, 201)
 
 
+@pytest.mark.regression
+def test_deleted_booking_returns_404(booking_api, auth_token):
+    """
+    Test that a deleted booking cannot be retrieved and returns 404.
+    """
+    # 1. Create
+    booking_data = generate_booking()
+    create_res = booking_api.create_booking(booking_data)
+    temp_id = create_res.json()["bookingid"]
+    
+    # 2. Delete
+    booking_api.delete_booking(temp_id, auth_token)
+    
+    # 3. Verify GET 404
+    response = booking_api.get_booking(temp_id)
+    assert_status_code(response, 404)
+
+
+
 
 
 
