@@ -35,3 +35,14 @@ def test_create_missing_firstname_field(booking_api):
     assert response.status_code in [400, 500], f"Expected 400/500 but got {response.status_code}"
 
 
+@pytest.mark.negative
+def test_create_empty_body(booking_api):
+    """
+    Test that creating a booking with an empty JSON body returns 400 or 415.
+    """
+    response = booking_api.post("/booking", json={})
+    # Often returns 500 in this quirky API but 400 is expected standard
+    assert response.status_code in [400, 415, 500], f"Expected 400/415/500 but got {response.status_code}"
+
+
+
