@@ -42,4 +42,17 @@ New → Assigned → In Progress → Fixed → Verified → Closed
 - **Actual Result**: HTTP `200 OK` is incorrectly returned alongside the unmodified original data.
 - **Fixed In**: Pending
 
+### BUG-004: No rate limiting on auth endpoint
+- **Severity**: Major
+- **Priority**: P2
+- **Status**: In Progress
+- **Description**: The `/auth` endpoint allows an unlimited number of login attempts without enforcing rate limits or account lockouts. This exposes the system to brute-force credential attacks.
+- **Steps to Reproduce**:
+  1. Write an automated loop to send 100+ requests to `POST /auth`.
+  2. Provide random user credentials in the JSON payload rapidly.
+- **Expected Result**: HTTP `429 Too Many Requests` after a specific threshold (e.g., 5 attempts/minute).
+- **Actual Result**: All requests are processed normally (returning HTTP 200).
+- **Fixed In**: Under investigation by the backend security team.
+
+
 
