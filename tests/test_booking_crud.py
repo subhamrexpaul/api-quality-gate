@@ -48,4 +48,19 @@ def test_create_booking_returns_200(booking_api):
     assert_status_code(response, 200)
 
 
+@pytest.mark.smoke
+def test_create_booking_response_has_bookingid(booking_api):
+    """
+    Test that the response of creating a booking includes the 'bookingid' key.
+    """
+    booking_data = generate_booking()
+    response = booking_api.create_booking(booking_data)
+    assert_status_code(response, 200)
+    
+    data = response.json()
+    assert "bookingid" in data, "Response JSON is missing 'bookingid' key"
+    assert isinstance(data["bookingid"], int), f"Expected int for bookingid but got {type(data['bookingid'])}"
+
+
+
 
