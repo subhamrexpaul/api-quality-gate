@@ -62,5 +62,19 @@ def test_auth_response_matches_schema(auth_api):
     assert_valid_schema(response.json(), str(AUTH_SCHEMA))
 
 
+@pytest.mark.contract
+def test_booking_all_required_fields_present(booking_api, sample_booking):
+    """
+    Test that the booking object contains all required fields as per schema.
+    """
+    response = booking_api.get_booking(sample_booking)
+    data = response.json()
+    required_fields = ["firstname", "lastname", "totalprice", "depositpaid", "bookingdates"]
+    
+    for field in required_fields:
+        assert field in data, f"Required field '{field}' is missing in the response"
+
+
+
 
 
