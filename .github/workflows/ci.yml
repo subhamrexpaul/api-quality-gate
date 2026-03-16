@@ -33,17 +33,8 @@ jobs:
           sudo mv allure-2.27.0 /opt/allure
           sudo ln -s /opt/allure/bin/allure /usr/local/bin/allure
 
-      - name: Run smoke tests
-        run: pytest -m smoke
-
-      - name: Run regression tests
-        run: pytest -m regression
-
-      - name: Run contract tests
-        run: pytest -m contract
-
-      - name: Run negative tests
-        run: pytest -m negative
+      - name: Run all tests
+        run: pytest tests/ -v
 
       - name: Generate Allure HTML Report
         run: allure generate allure-results --clean -o allure-report
