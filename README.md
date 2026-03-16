@@ -4,7 +4,12 @@ A professional, production-ready **Automated Testing** framework for high-stakes
 
 ![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=flat&logo=python&logoColor=white)
 ![PyTest](https://img.shields.io/badge/PyTest-7.4.3-0A9EDC?style=flat&logo=pytest&logoColor=white)
-![GitHub Actions CI](https://img.shields.io/badge/GitHub%20Actions-CI-2088FF?style=flat&logo=github-actions&logoColor=white)
+![Requests](https://img.shields.io/badge/Requests-2.31.0-FF6B35?style=flat&logo=python&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-3.x-003B57?style=flat&logo=sqlite&logoColor=white)
+![JSON Schema](https://img.shields.io/badge/JSON%20Schema-4.21.1-000000?style=flat&logo=json&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-CI-2088FF?style=flat&logo=github-actions&logoColor=white)
+![Allure](https://img.shields.io/badge/Allure-Reports-orange?style=flat)
+![Faker](https://img.shields.io/badge/Faker-21.0.0-FF69B4?style=flat)
 ![MIT License](https://img.shields.io/badge/License-MIT-green?style=flat)
 
 📊 **Live Test Report**: https://subhamrexpaul.github.io/api-quality-gate/
@@ -23,6 +28,7 @@ What sets this suite apart is its adherence to professional **Testing methodolog
 | **SQL (SQLite)** | 3.x | Local data persistence layer for integrity assertions |
 | **JSON Schema** | 4.21.1 | **Contract Testing** and response shape validation |
 | **GitHub Actions** | N/A | **Continuous integration tools** for automated pipeline runs |
+| **Allure Reports** | 2.13.2 | Live test reporting & GitHub Pages deployment |
 | **Faker** | 21.0.0 | Dynamic test data generation for robust coverage |
 
 ## 🏗️ Architecture
@@ -95,4 +101,30 @@ Comprehensive documentation mapping to the **Bug life cycle** and requirements:
 - **Full STLC Documentation**: Professional-grade audit trails for every requirement and bug discovered.
 
 ---
-*Schema design compatible with Oracle Database 19c*
+
+## 📄 License
+This project is licensed under the **MIT License** — see below for details.
+
+```
+MIT License
+
+Copyright (c) 2026 Subham Paul
+
+Permission is hereby granted, free of charge, to any person 
+obtaining a copy of this software and associated documentation 
+files, to deal in the Software without restriction, including 
+without limitation the rights to use, copy, modify, merge, 
+publish, distribute, sublicense, and/or sell copies of the 
+Software, and to permit persons to whom the Software is 
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall 
+be included in all copies or substantial portions of the Software.
+```
+
+---
+*Schema design compatible with Oracle Database 19c — 
+suitable for enterprise QA environments*
+
+*© 2026 [Subham Paul](https://github.com/subhamrexpaul). 
+All rights reserved.*
