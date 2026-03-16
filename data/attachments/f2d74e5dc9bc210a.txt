@@ -1,0 +1,2 @@
+[POST] https://restful-booker.herokuapp.com/booking -> Status: 200
+[DELETE] https://restful-booker.herokuapp.com/booking/1162 -> Status: 201

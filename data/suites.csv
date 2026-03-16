@@ -1,0 +1,150 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Mon Mar 16 09:32:28 UTC 2026","Mon Mar 16 09:32:28 UTC 2026","21","tests","test_auth","","","","test_invalid_password_returns_bad_credentials","
+    Test that providing a valid username but an incorrect password
+    returns a 200 OK containing 'Bad credentials' message.
+    "
+"passed","Mon Mar 16 09:32:30 UTC 2026","Mon Mar 16 09:32:30 UTC 2026","21","tests","test_negative","","","","test_create_empty_body","
+    Test that creating a booking with an empty JSON body returns 400 or 415.
+    "
+"passed","Mon Mar 16 09:32:29 UTC 2026","Mon Mar 16 09:32:29 UTC 2026","21","tests","test_contract","","","","test_bookingdates_has_checkin_and_checkout","
+    Test that the 'bookingdates' object contains 'checkin' and 'checkout' fields.
+    "
+"passed","Mon Mar 16 09:32:29 UTC 2026","Mon Mar 16 09:32:29 UTC 2026","21","tests","test_contract","","","","test_get_booking_matches_schema","
+    Test that the GET /booking/:id response matches the defined JSON schema.
+    "
+"passed","Mon Mar 16 09:32:28 UTC 2026","Mon Mar 16 09:32:28 UTC 2026","20","tests","test_auth","","","","test_empty_password_returns_bad_credentials","
+    Test that providing an empty password returns a 200 OK 
+    containing 'Bad credentials' message.
+    "
+"passed","Mon Mar 16 09:32:30 UTC 2026","Mon Mar 16 09:32:30 UTC 2026","21","tests","test_negative","","","","test_create_negative_totalprice","
+    BUG-005 — API accepts negative price without validation.
+    Testing that the API allows creating a booking with a negative totalprice.
+    "
+"passed","Mon Mar 16 09:32:30 UTC 2026","Mon Mar 16 09:32:30 UTC 2026","21","tests","test_negative","","","","test_auth_wrong_content_type","
+    BUG-001 — API ignores Content-Type header and accepts requests.
+    Test that sending auth request with wrong content type returns 415 or 400.
+    (Documented quirk: currently returns 200).
+    "
+"passed","Mon Mar 16 09:32:30 UTC 2026","Mon Mar 16 09:32:30 UTC 2026","21","tests","test_negative","","","","test_delete_without_token_returns_403","
+    Test that deleting a booking without a token returns a 403 Forbidden.
+    "
+"passed","Mon Mar 16 09:32:29 UTC 2026","Mon Mar 16 09:32:29 UTC 2026","22","tests","test_booking_crud","","","","test_get_booking_by_id_returns_200","
+    Test that retrieving a specific booking by its ID returns a 200 OK.
+    Uses the sample_booking fixture for setup and cleanup.
+    "
+"passed","Mon Mar 16 09:32:29 UTC 2026","Mon Mar 16 09:32:29 UTC 2026","41","tests","test_booking_crud","","","","test_delete_booking_returns_201","
+    Test that deleting a booking returns a 201 Created status code.
+    (Note: API quirk uses 201 instead of 204).
+    "
+"passed","Mon Mar 16 09:32:28 UTC 2026","Mon Mar 16 09:32:28 UTC 2026","151","tests","test_auth","","","","test_valid_auth_returns_token","
+    Test that providing valid credentials returns 200 OK and a token string.
+    "
+"passed","Mon Mar 16 09:32:29 UTC 2026","Mon Mar 16 09:32:29 UTC 2026","21","tests","test_contract","","","","test_auth_response_matches_schema","
+    Test that the POST /auth response matches the auth schema.
+    "
+"passed","Mon Mar 16 09:32:29 UTC 2026","Mon Mar 16 09:32:29 UTC 2026","20","tests","test_contract","","","","test_totalprice_is_integer_not_string","
+    Test that the 'totalprice' field is of integer type.
+    "
+"passed","Mon Mar 16 09:32:29 UTC 2026","Mon Mar 16 09:32:29 UTC 2026","22","tests","test_booking_crud","","","","test_partial_update_firstname","
+    Test that a partial update (PATCH) of only the firstname field works correctly.
+    "
+"passed","Mon Mar 16 09:32:30 UTC 2026","Mon Mar 16 09:32:30 UTC 2026","21","tests","test_negative","","","","test_update_without_token_returns_403","
+    Test that updating a booking without a token returns a 403 Forbidden.
+    "
+"passed","Mon Mar 16 09:32:30 UTC 2026","Mon Mar 16 09:32:30 UTC 2026","0","tests","test_data_integrity","","","","test_db_checkin_before_checkout","
+    Test that no bookings in the database have a check-in date on or after checkout.
+    Uses Query 5.
+    "
+"passed","Mon Mar 16 09:32:28 UTC 2026","Mon Mar 16 09:32:28 UTC 2026","144","tests","test_booking_crud","","","","test_get_all_bookings_returns_200","
+    Test that retrieving all booking IDs returns a 200 OK status code.
+    "
+"passed","Mon Mar 16 09:32:28 UTC 2026","Mon Mar 16 09:32:29 UTC 2026","22","tests","test_booking_crud","","","","test_create_booking_firstname_matches_request","
+    Test that the firstname of the created booking matches the request data.
+    "
+"passed","Mon Mar 16 09:32:29 UTC 2026","Mon Mar 16 09:32:29 UTC 2026","22","tests","test_contract","","","","test_create_booking_response_matches_schema","
+    Test that the POST /booking response matches the wrapper schema.
+    "
+"passed","Mon Mar 16 09:32:28 UTC 2026","Mon Mar 16 09:32:28 UTC 2026","22","tests","test_booking_crud","","","","test_each_item_has_bookingid_key","
+    Test that every object in the booking list contains the 'bookingid' key.
+    "
+"passed","Mon Mar 16 09:32:30 UTC 2026","Mon Mar 16 09:32:30 UTC 2026","21","tests","test_negative","","","","test_create_missing_firstname_field","
+    Test that creating a booking with a missing required field (firstname) returns 400 or 500.
+    Note: Restful-Booker often returns 500 for schema violations.
+    "
+"passed","Mon Mar 16 09:32:29 UTC 2026","Mon Mar 16 09:32:29 UTC 2026","23","tests","test_contract","","","","test_patch_booking_response_matches_schema","
+    Test that the PATCH /booking/:id response matches the booking schema.
+    "
+"passed","Mon Mar 16 09:32:29 UTC 2026","Mon Mar 16 09:32:29 UTC 2026","22","tests","test_booking_crud","","","","test_full_update_booking","
+    Test that a full update (PUT) of a booking correctly modifies labels.
+    "
+"passed","Mon Mar 16 09:32:30 UTC 2026","Mon Mar 16 09:32:30 UTC 2026","63","tests","test_negative","","","","test_double_delete_same_booking","
+    Test that deleting the same booking ID twice returns 405 or 404 on second attempt.
+    "
+"passed","Mon Mar 16 09:32:29 UTC 2026","Mon Mar 16 09:32:30 UTC 2026","22","tests","test_data_integrity","","","","test_booking_persisted_after_create","
+    Test that a booking created via API and inserted into DB is correctly persisted.
+    "
+"passed","Mon Mar 16 09:32:30 UTC 2026","Mon Mar 16 09:32:30 UTC 2026","21","tests","test_negative","","","","test_delete_nonexistent_booking","
+    Test that deleting a non-existent booking ID returns 405 Method Not Allowed.
+    Note: Industry standard is 404, but this API quirky.
+    "
+"passed","Mon Mar 16 09:32:28 UTC 2026","Mon Mar 16 09:32:28 UTC 2026","21","tests","test_auth","","","","test_auth_response_schema","
+    Test that the valid authentication response matches the expected JSON Schema.
+    "
+"passed","Mon Mar 16 09:32:29 UTC 2026","Mon Mar 16 09:32:29 UTC 2026","22","tests","test_booking_crud","","","","test_partial_update_totalprice","
+    Test that a partial update (PATCH) of only the totalprice field works correctly.
+    "
+"passed","Mon Mar 16 09:32:29 UTC 2026","Mon Mar 16 09:32:29 UTC 2026","24","tests","test_contract","","","","test_put_booking_response_matches_schema","
+    Test that the PUT /booking/:id response matches the booking schema.
+    "
+"passed","Mon Mar 16 09:32:30 UTC 2026","Mon Mar 16 09:32:30 UTC 2026","24","tests","test_negative","","","","test_partial_update_empty_body","
+    BUG-003 — PATCH with empty body returns 200, should be 400.
+    "
+"passed","Mon Mar 16 09:32:29 UTC 2026","Mon Mar 16 09:32:29 UTC 2026","23","tests","test_booking_crud","","","","test_create_and_persist_to_db","
+    Test that a created booking can be successfully inserted into and 
+    retrieved from the local SQLite database.
+    "
+"passed","Mon Mar 16 09:32:29 UTC 2026","Mon Mar 16 09:32:29 UTC 2026","63","tests","test_booking_crud","","","","test_deleted_booking_returns_404","
+    Test that a deleted booking cannot be retrieved and returns 404.
+    "
+"passed","Mon Mar 16 09:32:30 UTC 2026","Mon Mar 16 09:32:30 UTC 2026","0","tests","test_data_integrity","","","","test_db_firstname_not_null","
+    Test that no bookings in the database have a NULL firstname.
+    Uses Query 1.
+    "
+"passed","Mon Mar 16 09:32:29 UTC 2026","Mon Mar 16 09:32:29 UTC 2026","22","tests","test_booking_crud","","","","test_get_booking_returns_correct_data","
+    Test that retrieving a booking by ID returns the correct data keys.
+    "
+"passed","Mon Mar 16 09:32:30 UTC 2026","Mon Mar 16 09:32:30 UTC 2026","22","tests","test_negative","","","","test_get_booking_with_string_id","
+    Test that retrieving a booking using a string ID instead of integer returns 404.
+    "
+"passed","Mon Mar 16 09:32:30 UTC 2026","Mon Mar 16 09:32:30 UTC 2026","67","tests","test_data_integrity","","","","test_db_row_count_matches_inserts","
+    Test that the database row count correctly reflects the number of inserts performed.
+    Uses Query 4.
+    "
+"passed","Mon Mar 16 09:32:28 UTC 2026","Mon Mar 16 09:32:28 UTC 2026","21","tests","test_booking_crud","","","","test_create_booking_returns_200","
+    Test that creating a new booking returns a 200 OK status code.
+    (Note: API quirk uses 200 instead of 201).
+    "
+"passed","Mon Mar 16 09:32:28 UTC 2026","Mon Mar 16 09:32:28 UTC 2026","21","tests","test_auth","","","","test_empty_username_returns_bad_credentials","
+    Test that providing an empty username returns a 200 OK 
+    containing 'Bad credentials' message.
+    "
+"passed","Mon Mar 16 09:32:30 UTC 2026","Mon Mar 16 09:32:30 UTC 2026","1","tests","test_data_integrity","","","","test_db_totalprice_positive","
+    Test that no bookings in the database have zero or negative totalprice.
+    Uses Query 3.
+    "
+"passed","Mon Mar 16 09:32:30 UTC 2026","Mon Mar 16 09:32:30 UTC 2026","1","tests","test_data_integrity","","","","test_db_no_duplicate_booking_ids","
+    Test that there are no duplicate booking_ids in the database.
+    Uses Query 2.
+    "
+"passed","Mon Mar 16 09:32:28 UTC 2026","Mon Mar 16 09:32:28 UTC 2026","24","tests","test_booking_crud","","","","test_get_all_bookings_returns_list","
+    Test that retrieving all booking IDs returns a non-empty list.
+    "
+"passed","Mon Mar 16 09:32:29 UTC 2026","Mon Mar 16 09:32:29 UTC 2026","30","tests","test_contract","","","","test_booking_all_required_fields_present","
+    Test that the booking object contains all required fields as per schema.
+    "
+"passed","Mon Mar 16 09:32:28 UTC 2026","Mon Mar 16 09:32:28 UTC 2026","21","tests","test_booking_crud","","","","test_create_booking_response_has_bookingid","
+    Test that the response of creating a booking includes the 'bookingid' key.
+    "
+"passed","Mon Mar 16 09:32:29 UTC 2026","Mon Mar 16 09:32:29 UTC 2026","21","tests","test_booking_crud","","","","test_get_nonexistent_booking_returns_404","
+    Test that retrieving a non-existent booking ID returns a 404 Not Found.
+    "
