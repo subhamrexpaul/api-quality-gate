@@ -7,6 +7,8 @@ A professional, production-ready **Automated Testing** framework for high-stakes
 ![GitHub Actions CI](https://img.shields.io/badge/GitHub%20Actions-CI-2088FF?style=flat&logo=github-actions&logoColor=white)
 ![MIT License](https://img.shields.io/badge/License-MIT-green?style=flat)
 
+📊 **Live Test Report**: https://subhamrexpaul.github.io/api-quality-gate/
+
 ## 🏢 About This Project
 This project simulates a high-assurance **Automated Testing** engagement for an Oracle consulting partner. It targets the **Restful-Booker** hotel booking API to ensure zero-defect releases for critical reservation workflows. By implementing a "Quality Gate," this suite prevents breaking changes from reaching production through rigorous validation of auth tokens, booking lifecycles, and financial data integrity.
 
