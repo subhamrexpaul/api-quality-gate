@@ -5,3 +5,5 @@ reports/
 test_results.db
 .env
 .DS_Store
+allure-results/
+allure-report/
